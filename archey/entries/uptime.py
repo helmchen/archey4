@@ -149,7 +149,7 @@ class Uptime(Entry):
         )
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Pretty-formats the uptime to a string."""
         days = self.value["days"]
         hours = self.value["hours"]

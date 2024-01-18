@@ -45,7 +45,7 @@ class Entry(AbstractBaseClass):
         self._logger = logging.getLogger(self.__module__)
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """
         Provide a "pretty" value. Can be overridden by subclasses.
         Return value is a list (1 object per line) of tuples of (name, value).

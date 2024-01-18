@@ -227,7 +227,7 @@ class Temperature(Entry):
         return temp * (9 / 5) + 32
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Pretty-formats with units."""
         if not self.value:
             # Fall back on the default behavior if no temperatures were detected.

@@ -98,7 +98,7 @@ class WanIP(Entry):
             return None
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Pretty-formats our list of IP addresses."""
         # If we found IP addresses, join them together nicely.
         # If not, fall-back on the "No address" string.

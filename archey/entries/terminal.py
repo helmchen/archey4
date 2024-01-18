@@ -122,7 +122,7 @@ class Terminal(Entry):
         return env_term
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Pretty-formats with colors palette"""
         text_output = self.value or self._default_strings.get("not_detected")
         if Style.should_color_output():

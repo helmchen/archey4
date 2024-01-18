@@ -59,7 +59,7 @@ class Kernel(Entry):
         return kernel_releases.get("latest_stable", {}).get("version")
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Display running kernel and latest kernel if possible"""
         text_output = " ".join((self.value["name"], self.value["release"]))
 

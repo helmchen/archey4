@@ -187,7 +187,7 @@ class CPU(Entry):
         return [{model_name: int(nb_cores)}]
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Provides CPU pretty value based on preferences"""
         # No CPU could be detected.
         if not self.value:

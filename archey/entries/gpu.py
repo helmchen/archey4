@@ -83,7 +83,7 @@ class GPU(Entry):
         return gpus_list
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """Pretty-formats GPUs based on preferences"""
         # No GPU could be detected.
         if not self.value:

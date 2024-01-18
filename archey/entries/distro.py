@@ -46,7 +46,7 @@ class Distro(Entry):
         return f"Darwin {platform.release()}"
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         return [
             (
                 self.name,

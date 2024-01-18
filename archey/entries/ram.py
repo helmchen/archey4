@@ -155,7 +155,7 @@ class RAM(Entry):
         return (mem_used / 1024), (mem_total / 1024)
 
     @property
-    def pretty_value(self) -> List[tuple[str, str]]:
+    def pretty_value(self) -> "List[tuple[str, str]]":
         """
         Pretty-formats the RAM usage with color and units.
         """
