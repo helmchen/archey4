@@ -14,9 +14,8 @@ class TestDiskEntry(unittest.TestCase):
     """
 
     def setUp(self):
-        """We use these mocks so often, it's worth defining them here."""
+        """We use this mock so often, it's worth defining here."""
         self.disk_instance_mock = HelperMethods.entry_mock(Disk)
-        self.output_mock = MagicMock()
 
     # Used to make `_replace_apfs_volumes_by_their_containers` call void (see below).
     @patch.object(
@@ -401,10 +400,14 @@ class TestDiskEntry(unittest.TestCase):
                         "total_blocks": 100,
                     }
                 }
-                Disk.output(self.disk_instance_mock, self.output_mock)
-                self.output_mock.append.assert_called_with(
-                    "Disk",
-                    f"{blocks_color_tuple[1]}{blocks_color_tuple[0]} KiB{Colors.CLEAR} / 100.0 KiB",
+                self.assertListEqual(
+                    Disk.pretty_value.__get__(self.disk_instance_mock),
+                    [
+                        (
+                            "Disk",
+                            f"{blocks_color_tuple[1]}{blocks_color_tuple[0]} KiB{Colors.CLEAR} / 100.0 KiB",
+                        )
+                    ],
                 )
 
     def test_disk_multiline_output(self):
@@ -423,48 +426,39 @@ class TestDiskEntry(unittest.TestCase):
         }
 
         with self.subTest("Single-line combined output."):
-            Disk.output(self.disk_instance_mock, self.output_mock)
-            self.output_mock.append.assert_called_once_with(
-                "Disk", f"{Colors.YELLOW_NORMAL}20.0 KiB{Colors.CLEAR} / 40.0 KiB"
+            self.assertListEqual(
+                Disk.pretty_value.__get__(self.disk_instance_mock),
+                [("Disk", f"{Colors.YELLOW_NORMAL}20.0 KiB{Colors.CLEAR} / 40.0 KiB")],
             )
-
-        self.output_mock.reset_mock()
 
         with self.subTest("Multi-line output"):
             self.disk_instance_mock.options["combine_total"] = False
-            Disk.output(self.disk_instance_mock, self.output_mock)
-            self.assertEqual(self.output_mock.append.call_count, 2)
-            self.output_mock.append.assert_has_calls(
+            self.assertListEqual(
+                Disk.pretty_value.__get__(self.disk_instance_mock),
                 [
-                    call("Disk", f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB"),
-                    call("Disk", f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB"),
-                ]
+                    ("Disk", f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB"),
+                    ("Disk", f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB"),
+                ],
             )
-
-        self.output_mock.reset_mock()
 
         with self.subTest("Entry name labeling (device path with entry name)"):
             self.disk_instance_mock.options = {
                 "combine_total": False,
                 "disk_labels": "device_paths",
             }
-
-            Disk.output(self.disk_instance_mock, self.output_mock)
-            self.assertEqual(self.output_mock.append.call_count, 2)
-            self.output_mock.append.assert_has_calls(
+            self.assertListEqual(
+                Disk.pretty_value.__get__(self.disk_instance_mock),
                 [
-                    call(
+                    (
                         "Disk (/dev/my-cool-disk)",
                         f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB",
                     ),
-                    call(
+                    (
                         "Disk (/dev/my-cooler-disk)",
                         f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB",
                     ),
-                ]
+                ],
             )
-
-        self.output_mock.reset_mock()
 
         with self.subTest("Entry name labeling (mount points without entry name)"):
             self.disk_instance_mock.options = {
@@ -472,23 +466,19 @@ class TestDiskEntry(unittest.TestCase):
                 "disk_labels": "mount_points",
                 "hide_entry_name": True,
             }
-
-            Disk.output(self.disk_instance_mock, self.output_mock)
-            self.assertEqual(self.output_mock.append.call_count, 2)
-            self.output_mock.append.assert_has_calls(
+            self.assertListEqual(
+                Disk.pretty_value.__get__(self.disk_instance_mock),
                 [
-                    call(
+                    (
                         "(first_mount_point)",
                         f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB",
                     ),
-                    call(
+                    (
                         "(second_mount_point)",
                         f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB",
                     ),
-                ]
+                ],
             )
-
-        self.output_mock.reset_mock()
 
         with self.subTest("Entry name labeling (without disk label nor entry name)"):
             self.disk_instance_mock.options = {
@@ -497,14 +487,12 @@ class TestDiskEntry(unittest.TestCase):
                 # `hide_entry_name` is being ignored as `disk_labels` evaluates to "falsy" too.
                 "hide_entry_name": True,
             }
-
-            Disk.output(self.disk_instance_mock, self.output_mock)
-            self.assertEqual(self.output_mock.append.call_count, 2)
-            self.output_mock.append.assert_has_calls(
+            self.assertListEqual(
+                Disk.pretty_value.__get__(self.disk_instance_mock),
                 [
-                    call("Disk", f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB"),
-                    call("Disk", f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB"),
-                ]
+                    ("Disk", f"{Colors.RED_NORMAL}10.0 KiB{Colors.CLEAR} / 10.0 KiB"),
+                    ("Disk", f"{Colors.GREEN_NORMAL}10.0 KiB{Colors.CLEAR} / 30.0 KiB"),
+                ],
             )
 
 

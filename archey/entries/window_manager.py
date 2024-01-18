@@ -89,14 +89,14 @@ class WindowManager(Entry):
             "display_server_protocol": display_server_protocol,
         }
 
-    def output(self, output) -> None:
+    @property
+    def pretty_value(self) -> [(str, str)]:
         # No WM could be detected.
         if self.value["name"] is None:
-            output.append(self.name, self._default_strings.get("not_detected"))
-            return
+            return [(self.name, self._default_strings.get("not_detected"))]
 
         text_output = self.value["name"]
         if self.value["display_server_protocol"] is not None:
             text_output += f" ({self.value['display_server_protocol']})"
 
-        output.append(self.name, text_output)
+        return [(self.name, text_output)]

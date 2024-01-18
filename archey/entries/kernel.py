@@ -58,7 +58,8 @@ class Kernel(Entry):
 
         return kernel_releases.get("latest_stable", {}).get("version")
 
-    def output(self, output) -> None:
+    @property
+    def pretty_value(self) -> [(str, str)]:
         """Display running kernel and latest kernel if possible"""
         text_output = " ".join((self.value["name"], self.value["release"]))
 
@@ -68,4 +69,4 @@ class Kernel(Entry):
             else:
                 text_output += f" ({self._default_strings.get('latest')})"
 
-        output.append(self.name, text_output)
+        return [(self.name, text_output)]

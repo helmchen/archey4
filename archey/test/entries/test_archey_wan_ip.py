@@ -118,38 +118,29 @@ class TestWanIPEntry(unittest.TestCase, CustomAssertions):
         self.wan_ip_mock.value = ["XXX.YY.ZZ.TTT", "0123::4567:89a:dead:beef"]
 
         with self.subTest("Single-line combined output."):
-            WanIP.output(self.wan_ip_mock, self.output_mock)
-
-            self.assertEqual(
-                self.output_mock.append.call_args[0][1],
-                "XXX.YY.ZZ.TTT, 0123::4567:89a:dead:beef",
+            self.assertListEqual(
+                WanIP.pretty_value.__get__(self.wan_ip_mock),
+                [(self.wan_ip_mock.name, "XXX.YY.ZZ.TTT, 0123::4567:89a:dead:beef")],
             )
-
-        self.output_mock.reset_mock()
 
         with self.subTest("Multi-lines output."):
             self.wan_ip_mock.options["one_line"] = False
-
-            WanIP.output(self.wan_ip_mock, self.output_mock)
-            self.assertEqual(self.output_mock.append.call_count, 2)
-            self.output_mock.append.assert_has_calls(
+            self.assertListEqual(
+                WanIP.pretty_value.__get__(self.wan_ip_mock),
                 [
-                    call("WAN IP", "XXX.YY.ZZ.TTT"),
-                    call("WAN IP", "0123::4567:89a:dead:beef"),
-                ]
+                    ("WAN IP", "XXX.YY.ZZ.TTT"),
+                    ("WAN IP", "0123::4567:89a:dead:beef"),
+                ],
             )
 
     def test_do_not_track(self):
         """Check whether `DO_NOT_TRACK` environment variable is correctly honored"""
         with patch("archey.entries.wan_ip.Environment", Mock(DO_NOT_TRACK=True)):
             self.wan_ip_mock.value = []
-
-            WanIP.output(self.wan_ip_mock, self.output_mock)
-
             self.assertListEmpty(self.wan_ip_mock.value)
-            self.assertEqual(
-                self.output_mock.append.call_args[0][1],
-                DEFAULT_CONFIG["default_strings"]["not_detected"],
+            self.assertListEqual(
+                WanIP.pretty_value.__get__(self.wan_ip_mock),
+                [(self.wan_ip_mock.name, DEFAULT_CONFIG["default_strings"]["not_detected"])],
             )
 
     @HelperMethods.patch_clean_configuration
@@ -159,13 +150,10 @@ class TestWanIPEntry(unittest.TestCase, CustomAssertions):
         Additionally check the `output` method behavior.
         """
         self.wan_ip_mock.value = []
-
-        WanIP.output(self.wan_ip_mock, self.output_mock)
-
         self.assertListEmpty(self.wan_ip_mock.value)
-        self.assertEqual(
-            self.output_mock.append.call_args[0][1],
-            DEFAULT_CONFIG["default_strings"]["no_address"],
+        self.assertListEqual(
+            WanIP.pretty_value.__get__(self.wan_ip_mock),
+            [(self.wan_ip_mock.name, DEFAULT_CONFIG["default_strings"]["no_address"])],
         )
 
 

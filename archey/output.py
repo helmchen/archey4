@@ -85,9 +85,10 @@ class Output:
         if self._format_to_json:
             self._output_json()
         else:
-            # Iterate through the entries and run their output method to add their content.
+            # Iterate through the entries and get their content.
             for entry in self._entries:
-                entry.output(self)
+                for entry_line in entry.pretty_value:
+                    self.append(*entry_line)
             self._output_text()
 
     def _output_json(self) -> None:

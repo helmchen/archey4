@@ -14,7 +14,6 @@ class TestLoadAverageEntry(unittest.TestCase):
     def setUp(self):
         """Define mocked entry before each test"""
         self.load_average_mock = HelperMethods.entry_mock(LoadAverage)
-        self.output_mock = MagicMock()
 
     @HelperMethods.patch_clean_configuration
     def test_output_coloration(self):
@@ -25,12 +24,16 @@ class TestLoadAverageEntry(unittest.TestCase):
             "danger_threshold": 2.25,
         }
 
-        LoadAverage.output(self.load_average_mock, self.output_mock)
-        self.assertEqual(
-            self.output_mock.append.call_args[0][1],
-            f"{Colors.GREEN_NORMAL}0.5{Colors.CLEAR} "
-            f"{Colors.YELLOW_NORMAL}1.25{Colors.CLEAR} "
-            f"{Colors.RED_NORMAL}2.5{Colors.CLEAR}",
+        self.assertListEqual(
+            LoadAverage.pretty_value.__get__(self.load_average_mock),
+            [
+                (
+                    self.load_average_mock.name,
+                    f"{Colors.GREEN_NORMAL}0.5{Colors.CLEAR} "
+                    f"{Colors.YELLOW_NORMAL}1.25{Colors.CLEAR} "
+                    f"{Colors.RED_NORMAL}2.5{Colors.CLEAR}",
+                )
+            ],
         )
 
     @HelperMethods.patch_clean_configuration
@@ -44,12 +47,16 @@ class TestLoadAverageEntry(unittest.TestCase):
                 "warning_threshold": 5,
                 "danger_threshold": 5,
             }
-            LoadAverage.output(self.load_average_mock, self.output_mock)
-            self.assertEqual(
-                self.output_mock.append.call_args[0][1],
-                f"{Colors.GREEN_NORMAL}0.0{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}1.0{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+            self.assertListEqual(
+                LoadAverage.pretty_value.__get__(self.load_average_mock),
+                [
+                    (
+                        self.load_average_mock.name,
+                        f"{Colors.GREEN_NORMAL}0.0{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}1.0{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+                    )
+                ],
             )
 
         with self.subTest("1 decimal place"):
@@ -58,12 +65,16 @@ class TestLoadAverageEntry(unittest.TestCase):
                 "warning_threshold": 5,
                 "danger_threshold": 5,
             }
-            LoadAverage.output(self.load_average_mock, self.output_mock)
-            self.assertEqual(
-                self.output_mock.append.call_args[0][1],
-                f"{Colors.GREEN_NORMAL}0.3{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}1.2{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+            self.assertListEqual(
+                LoadAverage.pretty_value.__get__(self.load_average_mock),
+                [
+                    (
+                        self.load_average_mock.name,
+                        f"{Colors.GREEN_NORMAL}0.3{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}1.2{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+                    )
+                ],
             )
 
         with self.subTest("2 decimal places"):
@@ -72,12 +83,16 @@ class TestLoadAverageEntry(unittest.TestCase):
                 "warning_threshold": 5,
                 "danger_threshold": 5,
             }
-            LoadAverage.output(self.load_average_mock, self.output_mock)
-            self.assertEqual(
-                self.output_mock.append.call_args[0][1],
-                f"{Colors.GREEN_NORMAL}0.33{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}1.25{Colors.CLEAR} "
-                f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+            self.assertListEqual(
+                LoadAverage.pretty_value.__get__(self.load_average_mock),
+                [
+                    (
+                        self.load_average_mock.name,
+                        f"{Colors.GREEN_NORMAL}0.33{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}1.25{Colors.CLEAR} "
+                        f"{Colors.GREEN_NORMAL}2.0{Colors.CLEAR}",
+                    )
+                ],
             )
 
 

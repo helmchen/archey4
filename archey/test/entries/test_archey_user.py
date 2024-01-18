@@ -30,12 +30,9 @@ class TestUserEntry(unittest.TestCase):
     def test_output(self):
         """Simple test for `output` base method"""
         user_instance_mock = HelperMethods.entry_mock(User)
-
-        output_mock = MagicMock()
-        User.output(user_instance_mock, output_mock)
-
-        self.assertEqual(
-            output_mock.append.call_args[0][1], DEFAULT_CONFIG["default_strings"]["not_detected"]
+        self.assertListEqual(
+            User.pretty_value.__get__(user_instance_mock),
+            [(user_instance_mock.name, DEFAULT_CONFIG["default_strings"]["not_detected"])],
         )
 
 
