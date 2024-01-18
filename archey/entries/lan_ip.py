@@ -2,7 +2,7 @@
 
 import ipaddress
 from itertools import islice
-from typing import Iterator
+from typing import Iterator, List
 
 try:
     import netifaces
@@ -76,7 +76,7 @@ class LanIP(Entry):
                         yield ip_addr.compressed
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """Pretty-formats the IP address list."""
         # If we found IP addresses, join them together nicely.
         # If not, fall back on default strings according to `netifaces` availability.

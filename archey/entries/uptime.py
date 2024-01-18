@@ -5,6 +5,7 @@ import time
 from contextlib import suppress
 from datetime import timedelta
 from subprocess import PIPE, run
+from typing import List
 
 from archey.entry import Entry
 from archey.exceptions import ArcheyException
@@ -148,7 +149,7 @@ class Uptime(Entry):
         )
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """Pretty-formats the uptime to a string."""
         days = self.value["days"]
         hours = self.value["hours"]

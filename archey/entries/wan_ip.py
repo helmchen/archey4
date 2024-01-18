@@ -2,7 +2,7 @@
 
 from socket import timeout as SocketTimeoutError
 from subprocess import DEVNULL, CalledProcessError, TimeoutExpired, check_output
-from typing import Optional
+from typing import List, Optional
 from urllib.error import URLError
 from urllib.request import urlopen
 
@@ -98,7 +98,7 @@ class WanIP(Entry):
             return None
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """Pretty-formats our list of IP addresses."""
         # If we found IP addresses, join them together nicely.
         # If not, fall-back on the "No address" string.

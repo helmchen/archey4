@@ -64,7 +64,7 @@ class Custom(Entry):
                 self._logger.warning("%s", proc.stderr.rstrip())
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         if not self.value:
             return [(self.name, self._default_strings.get("not_detected"))]
 

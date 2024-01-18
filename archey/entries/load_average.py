@@ -2,6 +2,7 @@
 
 import os
 from contextlib import suppress
+from typing import List
 
 from archey.colors import Colors
 from archey.entry import Entry
@@ -20,7 +21,7 @@ class LoadAverage(Entry):
             self.value = os.getloadavg()
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         if not self.value:
             # Fall back on the default behavior if load average values could not be detected.
             return super().pretty_value

@@ -4,6 +4,7 @@ import os
 import platform
 import re
 from subprocess import DEVNULL, CalledProcessError, check_output
+from typing import List
 
 from archey.entry import Entry
 from archey.processes import Processes
@@ -90,7 +91,7 @@ class WindowManager(Entry):
         }
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         # No WM could be detected.
         if self.value["name"] is None:
             return [(self.name, self._default_strings.get("not_detected"))]

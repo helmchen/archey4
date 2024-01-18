@@ -3,7 +3,7 @@
 import json
 import platform
 from socket import timeout as SocketTimeoutError
-from typing import Optional
+from typing import List, Optional
 from urllib.error import URLError
 from urllib.request import urlopen
 
@@ -59,7 +59,7 @@ class Kernel(Entry):
         return kernel_releases.get("latest_stable", {}).get("version")
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """Display running kernel and latest kernel if possible"""
         text_output = " ".join((self.value["name"], self.value["release"]))
 

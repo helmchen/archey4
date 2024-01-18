@@ -229,7 +229,7 @@ class Disk(Entry):
         return f"{blocks:02.1f} {unit}{suffix}"
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """
         Pretty-formats the entry with color and units.
         Follows the user configuration supplied for formatting.

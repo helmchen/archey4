@@ -5,7 +5,7 @@ import platform
 import re
 from contextlib import suppress
 from subprocess import check_output
-from typing import Tuple
+from typing import List, Tuple
 
 from archey.colors import Colors
 from archey.entry import Entry
@@ -155,7 +155,7 @@ class RAM(Entry):
         return (mem_used / 1024), (mem_total / 1024)
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         """
         Pretty-formats the RAM usage with color and units.
         """

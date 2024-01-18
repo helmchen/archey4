@@ -2,7 +2,7 @@
 
 import platform
 from subprocess import check_output
-from typing import Optional
+from typing import List, Optional
 
 from archey.distributions import Distributions
 from archey.entry import Entry
@@ -46,7 +46,7 @@ class Distro(Entry):
         return f"Darwin {platform.release()}"
 
     @property
-    def pretty_value(self) -> [(str, str)]:
+    def pretty_value(self) -> List[tuple[str, str]]:
         return [
             (
                 self.name,
