@@ -3,7 +3,7 @@
 import unittest
 from datetime import timedelta
 from itertools import product
-from unittest.mock import MagicMock, mock_open, patch
+from unittest.mock import mock_open, patch
 
 from archey.entries.uptime import Uptime
 from archey.exceptions import ArcheyException

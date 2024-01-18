@@ -1,7 +1,7 @@
 """Test module for Archey's distribution detection module"""
 
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.distro import Distro

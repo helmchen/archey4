@@ -1,7 +1,7 @@
 """Test module for Archey's kernel information detection module"""
 
 import unittest
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.kernel import Kernel

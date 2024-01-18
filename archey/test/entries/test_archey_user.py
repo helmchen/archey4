@@ -1,7 +1,7 @@
 """Test module for Archey's session user name detection module"""
 
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.user import User

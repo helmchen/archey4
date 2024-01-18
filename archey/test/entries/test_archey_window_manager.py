@@ -1,7 +1,7 @@
 """Test module for Archey's window manager detection module"""
 
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.window_manager import WindowManager

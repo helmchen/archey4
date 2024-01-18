@@ -1,7 +1,7 @@
 """Test module for Archey's disks usage detection module"""
 
 import unittest
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import patch
 
 from archey.colors import Colors
 from archey.entries.disk import Disk
@@ -405,7 +405,8 @@ class TestDiskEntry(unittest.TestCase):
                     [
                         (
                             "Disk",
-                            f"{blocks_color_tuple[1]}{blocks_color_tuple[0]} KiB{Colors.CLEAR} / 100.0 KiB",
+                            f"{blocks_color_tuple[1]}{blocks_color_tuple[0]} KiB{Colors.CLEAR} "
+                            "/ 100.0 KiB",
                         )
                     ],
                 )

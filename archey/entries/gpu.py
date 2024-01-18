@@ -92,5 +92,5 @@ class GPU(Entry):
         # Join the results only if `one_line` option is enabled.
         if self.options.get("one_line"):
             return [(self.name, ", ".join(self.value))]
-        else:
-            return [(self.name, gpu_device) for gpu_device in self.value]
+
+        return [(self.name, gpu_device) for gpu_device in self.value]

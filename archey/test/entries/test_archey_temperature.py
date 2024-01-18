@@ -4,7 +4,7 @@ import os
 import tempfile
 import unittest
 from subprocess import CalledProcessError
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.temperature import Temperature

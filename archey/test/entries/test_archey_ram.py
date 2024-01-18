@@ -1,7 +1,7 @@
 """Test module for Archey's RAM usage detection module"""
 
 import unittest
-from unittest.mock import MagicMock, mock_open, patch
+from unittest.mock import mock_open, patch
 
 from archey.colors import Colors
 from archey.configuration import DEFAULT_CONFIG

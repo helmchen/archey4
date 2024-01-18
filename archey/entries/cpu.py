@@ -204,6 +204,6 @@ class CPU(Entry):
         if self.options.get("one_line"):
             # One-line output is enabled : Join the results !
             return [(self.name, ", ".join(entries))]
-        else:
-            # One-line output has been disabled, add one entry per item.
-            return [(self.name, entry) for entry in entries]
+
+        # One-line output has been disabled, add one entry per item.
+        return [(self.name, entry) for entry in entries]

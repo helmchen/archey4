@@ -3,7 +3,7 @@
 import unittest
 from socket import timeout as SocketTimeoutError
 from subprocess import CalledProcessError, TimeoutExpired
-from unittest.mock import MagicMock, Mock, call, patch
+from unittest.mock import MagicMock, Mock, patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.wan_ip import WanIP

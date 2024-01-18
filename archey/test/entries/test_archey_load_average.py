@@ -1,7 +1,6 @@
 """Test module for Archey LoadAverage detection module"""
 
 import unittest
-from unittest.mock import MagicMock
 
 from archey.colors import Colors
 from archey.entries.load_average import LoadAverage

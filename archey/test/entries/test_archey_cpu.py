@@ -1,7 +1,7 @@
 """Test module for Archey's CPU detection module"""
 
 import unittest
-from unittest.mock import MagicMock, call, mock_open, patch
+from unittest.mock import mock_open, patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.cpu import CPU

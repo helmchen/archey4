@@ -2,7 +2,7 @@
 
 import unittest
 from unittest.mock import DEFAULT as DEFAULT_SENTINEL
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.distributions import Distributions

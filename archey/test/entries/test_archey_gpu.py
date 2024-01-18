@@ -1,7 +1,7 @@
 """Test module for Archey's GPU detection module"""
 
 import unittest
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import patch
 
 from archey.configuration import DEFAULT_CONFIG
 from archey.entries.gpu import GPU

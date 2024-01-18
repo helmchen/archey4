@@ -55,6 +55,5 @@ class Entry(AbstractBaseClass):
             # Let's assume we can just use `__str__` on the object in value,
             # and create a single-line output with it.
             return [(self.name, str(self.value))]
-        else:
-            # If the value is "falsy" leave a generic "Not detected" message for this entry.
-            return [(self.name, self._default_strings.get("not_detected"))]
+        # If the value is "falsy" leave a generic "Not detected" message for this entry.
+        return [(self.name, self._default_strings.get("not_detected"))]
