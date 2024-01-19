@@ -27,8 +27,8 @@ class TestUserEntry(unittest.TestCase):
         self.assertIsNone(User().value)
 
     @HelperMethods.patch_clean_configuration
-    def test_output(self):
-        """Simple test for `output` base method"""
+    def test_pretty_value(self):
+        """Simple test for `pretty_value` base property"""
         user_instance_mock = HelperMethods.entry_mock(User)
         self.assertListEqual(
             User.pretty_value.__get__(user_instance_mock),

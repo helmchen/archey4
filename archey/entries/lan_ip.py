@@ -82,7 +82,7 @@ class LanIP(Entry):
         # If not, fall back on default strings according to `netifaces` availability.
         if self.value:
             if not self.options.get("one_line", True):
-                # One-line output has been disabled, add one IP address per item.
+                # One-line output has been disabled, create one line for each IP address.
                 return [(self.name, ip_address) for ip_address in self.value]
 
             text_output = ", ".join(self.value)

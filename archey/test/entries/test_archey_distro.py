@@ -45,8 +45,8 @@ class TestDistroEntry(unittest.TestCase):
         )
 
     @HelperMethods.patch_clean_configuration
-    def test_unknown_distro_output(self):
-        """Test for `output` method when distribution name couldn't be found"""
+    def test_unknown_distro_pretty_value(self):
+        """Test for `pretty_value` property when distribution name couldn't be found"""
         distro_instance_mock = HelperMethods.entry_mock(Distro)
 
         distro_instance_mock.value = {

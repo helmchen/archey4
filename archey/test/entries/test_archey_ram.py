@@ -125,7 +125,7 @@ Swapouts:                               3456015.
 
     @HelperMethods.patch_clean_configuration
     def test_various_output_configuration(self):
-        """Test `output` overloading based on user preferences"""
+        """Test `pretty_value` output overloading based on user preferences"""
         ram_instance_mock = HelperMethods.entry_mock(RAM)
 
         with self.subTest("Output in case of non-detection."):

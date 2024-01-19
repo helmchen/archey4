@@ -382,8 +382,8 @@ class TestDiskEntry(unittest.TestCase):
                     test_case[1],
                 )
 
-    def test_disk_output_colors(self):
-        """Test `output` disk level coloring."""
+    def test_disk_pretty_value_colors(self):
+        """Test `pretty_value` output disk level coloring."""
         # This dict's values are tuples of used blocks, and the level's corresponding color.
         # For reference, this test uses a disk whose total block count is 100.
         levels = {
@@ -411,8 +411,8 @@ class TestDiskEntry(unittest.TestCase):
                     ],
                 )
 
-    def test_disk_multiline_output(self):
-        """Test `output`'s multi-line capability."""
+    def test_disk_multiline_pretty_value(self):
+        """Test `pretty_value`'s multi-line capability."""
         self.disk_instance_mock.value = {
             "first_mount_point": {
                 "device_path": "/dev/my-cool-disk",

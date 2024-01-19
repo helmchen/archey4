@@ -23,7 +23,6 @@ class TestWanIPEntry(unittest.TestCase, CustomAssertions):
     def setUp(self):
         """We use these mocks so often, it's worth defining them here."""
         self.wan_ip_mock = HelperMethods.entry_mock(WanIP)
-        self.output_mock = MagicMock()
 
     @patch(
         "archey.entries.wan_ip.check_output",

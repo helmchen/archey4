@@ -79,8 +79,8 @@ class Output:
     def output(self) -> None:
         """
         Main `Output`'s `output` method.
-        First we get entries to add their outputs to the results and then
-        calls specific `output` methods based (for instance) on preferred format.
+        We either hand-off to JSON output, or get entries' pretty-formatted values and add them
+        to the results.
         """
         if self._format_to_json:
             self._output_json()

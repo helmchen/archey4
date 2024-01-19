@@ -329,7 +329,7 @@ Cluster(s): 1
 
     @HelperMethods.patch_clean_configuration
     def test_various_output_configuration(self):
-        """Test `output` overloading based on user preferences combination"""
+        """Test `pretty_value` output overloading based on user preferences combination"""
         cpu_instance_mock = HelperMethods.entry_mock(CPU)
 
         cpu_instance_mock.value = [{"CPU-MODEL-NAME": 1}, {"ANOTHER-CPU-MODEL": 2}]

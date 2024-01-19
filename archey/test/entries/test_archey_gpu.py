@@ -167,7 +167,7 @@ vgapci0@pci0:16:0:0:  class=0x030000 card=0x3381103c chip=0x0533102b rev=0x00 hd
 
     @HelperMethods.patch_clean_configuration
     def test_various_output_configuration(self):
-        """Test `output` overloading based on user preferences"""
+        """Test `pretty_value` output overloading based on user preferences"""
         gpu_instance_mock = HelperMethods.entry_mock(GPU)
 
         gpu_instance_mock.value = [

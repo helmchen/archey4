@@ -205,5 +205,5 @@ class CPU(Entry):
             # One-line output is enabled : Join the results !
             return [(self.name, ", ".join(entries))]
 
-        # One-line output has been disabled, add one entry per item.
+        # One-line output has been disabled, create one line per item.
         return [(self.name, entry) for entry in entries]

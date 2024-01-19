@@ -218,7 +218,7 @@ class TestLanIPEntry(unittest.TestCase, CustomAssertions):
     def test_ipv6_and_limit_and_ether(self, _, __):
         """
         Test for IPv6 support, final set length limit and Ethernet interface filtering.
-        Additionally check the `output` method behavior.
+        Additionally check the `pretty_value` property behavior.
 
         IP address "compression" and interface name splitting will also be tested.
         """
@@ -346,7 +346,7 @@ class TestLanIPEntry(unittest.TestCase, CustomAssertions):
     def test_no_network_address_output(self, _, __):
         """
         Test when the network interface(s) do not have any IP address.
-        Additionally check the `output` method behavior.
+        Additionally check the `pretty_value` property behavior.
         """
         lan_ip = LanIP()
         self.assertListEmpty(lan_ip.value)

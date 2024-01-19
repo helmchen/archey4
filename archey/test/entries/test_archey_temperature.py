@@ -333,8 +333,8 @@ class TestTemperatureEntry(unittest.TestCase, CustomAssertions):
         # pylint: enable=protected-access
 
     @HelperMethods.patch_clean_configuration
-    def test_output(self):
-        """Test `output` method"""
+    def test_pretty_value(self):
+        """Test `pretty_value` property"""
         # No value --> not detected.
         self.assertListEqual(
             Temperature.pretty_value.__get__(self.temperature_mock),

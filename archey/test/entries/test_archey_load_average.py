@@ -8,15 +8,15 @@ from archey.test.entries import HelperMethods
 
 
 class TestLoadAverageEntry(unittest.TestCase):
-    """LoadAverage `output` configuration-based coloration test class"""
+    """LoadAverage `pretty_value` configuration-based coloration test class"""
 
     def setUp(self):
         """Define mocked entry before each test"""
         self.load_average_mock = HelperMethods.entry_mock(LoadAverage)
 
     @HelperMethods.patch_clean_configuration
-    def test_output_coloration(self):
-        """Test `output` coloration based on user preferences"""
+    def test_pretty_value_coloration(self):
+        """Test `pretty_value` output coloration based on user preferences"""
         self.load_average_mock.value = (0.5, 1.25, 2.5)
         self.load_average_mock.options = {
             "warning_threshold": 0.75,
@@ -36,8 +36,8 @@ class TestLoadAverageEntry(unittest.TestCase):
         )
 
     @HelperMethods.patch_clean_configuration
-    def test_output_rounding(self):
-        """Test `output` rounding based on user preferences"""
+    def test_pretty_value_rounding(self):
+        """Test `pretty_value` output rounding based on user preferences"""
         self.load_average_mock.value = (0.33333, 1.25, 2.0)
 
         with self.subTest("No decimal places"):
